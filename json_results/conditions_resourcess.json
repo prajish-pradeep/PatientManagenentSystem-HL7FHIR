@@ -1,0 +1,80 @@
+{
+    "resourceType": "Condition",
+    "id": "C00001",
+    "clinicalStatus": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "active",
+                "display": "Remission"
+            }
+        ]
+    },
+    "verificationStatus": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                "code": "provisional",
+                "display": "Unconfirmed"
+            }
+        ]
+    },
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                    "code": "encounter-diagnosis",
+                    "display": "Problem-list-item"
+                }
+            ]
+        }
+    ],
+    "severity": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-severity",
+                "code": "mild",
+                "display": "Severe"
+            }
+        ]
+    },
+    "code": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "123456",
+                "display": "Example Condition"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/P10002-01",
+        "display": "Linked to Patient P10002-01"
+    },
+    "participant": [
+        {
+            "function": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/participant-role",
+                        "code": "org",
+                        "display": "Organization"
+                    }
+                ]
+            },
+            "actor": {
+                "reference": "Organization/10002",
+                "display": "Organization 10002"
+            }
+        }
+    ],
+    "onsetDateTime": "2023-12-22",
+    "abatementDateTime": "2024-09-09",
+    "recordedDate": "2025-01-22T17:23:22.563961",
+    "note": [
+        {
+            "text": "This is a randomly generated condition for testing purposes."
+        }
+    ]
+}

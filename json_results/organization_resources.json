@@ -1,0 +1,85 @@
+{
+  "resourceType": "Organization",
+  "id": "10002",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Organization resource for Muirhead Medical Centre</div>"
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "MR",
+            "display": "Medical Record Number"
+          }
+        ],
+        "text": "Medical Record Number"
+      },
+      "system": "http://muirheadmedicalcentre.com",
+      "value": "10002"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        }
+      ],
+      "text": "Healthcare Provider"
+    }
+  ],
+  "name": "Muirhead Medical Centre",
+  "alias": [
+    "NHS Scotland"
+  ],
+  "contact": [
+    {
+      "purpose": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/contactentity-type",
+            "code": "ADMIN",
+            "display": "Administrative"
+          }
+        ],
+        "text": "Administrative Contact"
+      },
+      "name": {
+        "family": "Everett",
+        "given": [
+          "Jason"
+        ]
+      },
+      "telecom": [
+        {
+          "system": "email",
+          "value": "muirheadmedicalcentre@nhs.scot.co.uk",
+          "use": "work"
+        },
+        {
+          "system": "phone",
+          "value": "01382   580   264",
+          "use": "work"
+        }
+      ],
+      "address": {
+        "line": [
+          "Muirhead Medical Centre",
+          "Liff Road",
+          "Muirhead"
+        ],
+        "city": "Muirhead",
+        "state": "Dundee 4",
+        "postalCode": "DD2 5NH",
+        "country": "United Kingdom"
+      }
+    }
+  ]
+}

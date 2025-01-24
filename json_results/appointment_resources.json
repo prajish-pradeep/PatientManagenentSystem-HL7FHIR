@@ -1,0 +1,61 @@
+{
+    "resourceType": "Appointment",
+    "id": "A00001",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Appointment resource for Patient P10002-01</div>"
+    },
+    "identifier": [
+        {
+            "use": "official",
+            "system": "https://healthcare.example.com/appointment-id",
+            "value": "A00001"
+        }
+    ],
+    "status": "pending",
+    "description": "Routine check-up appointment",
+    "start": "2025-02-16T21:05:30.865036+00:00",
+    "end": "2025-02-21T21:35:30.865075+00:00",
+    "created": "2025-01-22T21:05:30.865093+00:00",
+    "minutesDuration": 30,
+    "participant": [
+        {
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code": "CALLBCK",
+                            "display": "Callback contact"
+                        }
+                    ]
+                }
+            ],
+            "actor": {
+                "reference": "Patient/P10002-01",
+                "display": "Patient P10002-01"
+            },
+            "required": "required",
+            "status": "declined"
+        },
+        {
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code": "CON",
+                            "display": "Consultant"
+                        }
+                    ]
+                }
+            ],
+            "actor": {
+                "reference": "Practitioner/10002-practitioner6",
+                "display": "Practitioner 10002-practitioner6"
+            },
+            "required": "required",
+            "status": "declined"
+        }
+    ]
+}

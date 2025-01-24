@@ -1,0 +1,68 @@
+{
+    "resourceType": "PractitionerRole",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Practitioner role for Muirhead Medical Centre with specialty Urology at organization Muirhead Medical Centre.</div>"
+    },
+    "id": "10002",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "PRN",
+                        "display": "Provider number"
+                    }
+                ],
+                "text": "Provider number"
+            },
+            "system": "http://muirheadmedicalcentre.com",
+            "value": "ROLE-10002"
+        }
+    ],
+    "active": true,
+    "period": {
+        "start": "2020-08-15",
+        "end": "2025-02-16"
+    },
+    "practitioner": {
+        "reference": "Practitioner/d05dce45-ea64-4e47-95b6-95169bb4975c",
+        "display": "Karen Farley"
+    },
+    "organization": {
+        "reference": "Organization/10002",
+        "display": "Muirhead Medical Centre"
+    },
+    "code": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/practitioner-role",
+                    "code": "researcher",
+                    "display": "Researcher"
+                }
+            ],
+            "text": "Researcher"
+        }
+    ],
+    "specialty": [
+        {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "394612005",
+                    "display": "Urology"
+                }
+            ],
+            "text": "Urology"
+        }
+    ],
+    "endpoint": [
+        {
+            "reference": "Endpoint/muirheadmedicalcentre",
+            "display": "Muirhead Medical Centre Endpoint"
+        }
+    ]
+}

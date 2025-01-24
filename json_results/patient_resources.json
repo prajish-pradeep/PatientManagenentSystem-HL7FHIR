@@ -1,0 +1,152 @@
+{
+    "resourceType": "Patient",
+    "id": "P10002-01",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Patient record</div>"
+    },
+    "identifier": [
+        {
+            "use": "usual",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "MR",
+                        "display": "Medical Record Number"
+                    }
+                ]
+            },
+            "system": "https://nhs.co.uk",
+            "value": "MRN-1"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "family": "Martinez",
+            "given": [
+                "Danielle"
+            ],
+            "prefix": [
+                "Ms."
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "459.288.4116",
+            "use": "home"
+        },
+        {
+            "system": "email",
+            "value": "dspencer@example.com",
+            "use": "work"
+        }
+    ],
+    "gender": "unknown",
+    "birthDate": "1959-10-03",
+    "deceasedBoolean": false,
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "Liff Road",
+                "Muirhead"
+            ],
+            "city": "Muirhead",
+            "state": "Dundee 4",
+            "postalCode": "DD2 5NH",
+            "country": "United Kingdom"
+        }
+    ],
+    "maritalStatus": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                "code": "W",
+                "display": "Widowed"
+            }
+        ],
+        "text": "Widowed"
+    },
+    "multipleBirthBoolean": false,
+    "contact": [
+        {
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                            "code": "N",
+                            "display": "Next-of-Kin"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "family": "Bryant",
+                "given": [
+                    "Laura"
+                ],
+                "prefix": [
+                    "Mr."
+                ]
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": "774-839-4643x018",
+                    "use": "mobile"
+                }
+            ],
+            "address": {
+                "line": [
+                    "Liff Road",
+                    "Muirhead"
+                ],
+                "city": "Muirhead",
+                "state": "Dundee 4",
+                "postalCode": "DD2 5NH",
+                "country": "United Kingdom"
+            },
+            "gender": "other",
+            "organization": {
+                "reference": "Organization/10002",
+                "display": "Muirhead Medical Centre"
+            },
+            "period": {
+                "start": "2021-12-25",
+                "end": "2024-02-01"
+            }
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "urn:ietf:bcp:47",
+                        "code": "de",
+                        "display": "German"
+                    }
+                ],
+                "text": "German"
+            },
+            "preferred": false
+        }
+    ],
+    "generalPractitioner": [
+        {
+            "reference": "Practitioner/10002-practitioner9",
+            "display": "Practitioner from Muirhead Medical Centre"
+        }
+    ],
+    "managingOrganization": {
+        "reference": "Organization/10002",
+        "display": "Muirhead Medical Centre"
+    }
+}

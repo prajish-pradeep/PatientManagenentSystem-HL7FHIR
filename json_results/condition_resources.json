@@ -1,0 +1,67 @@
+{
+    "resourceType": "Condition",
+    "id": "C00001",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Condition resource for P10002-01</div>"
+    },
+    "clinicalStatus": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "remission",
+                "display": "Remission"
+            }
+        ]
+    },
+    "verificationStatus": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                "code": "differential",
+                "display": "Differential"
+            }
+        ]
+    },
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                    "code": "encounter-diagnosis",
+                    "display": "Encounter Diagnosis"
+                }
+            ]
+        }
+    ],
+    "severity": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "24484000",
+                "display": "Severe"
+            }
+        ]
+    },
+    "code": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "473011001",
+                "display": "Allergic condition (finding)"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/P10002-01",
+        "display": "Linked to Patient P10002-01"
+    },
+    "onsetDateTime": "2021-06-27",
+    "recordedDate": "2025-01-22T18:36:13.958674+00:00",
+    "note": [
+        {
+            "text": "This is a randomly generated condition for testing purposes."
+        }
+    ],
+    "abatementDateTime": "2024-09-18"
+}

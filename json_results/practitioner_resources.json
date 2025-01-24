@@ -1,0 +1,107 @@
+{
+    "resourceType": "Practitioner",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Practitioner record.</div>"
+    },
+    "id": "10002-practitioner1",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "PRN",
+                        "display": "Provider number"
+                    }
+                ],
+                "text": "Provider number"
+            },
+            "system": "https://muirheadmedicalcentre.com",
+            "value": "PR-10002"
+        }
+    ],
+    "active": false,
+    "name": [
+        {
+            "family": "Conner",
+            "given": [
+                "Michelle"
+            ],
+            "prefix": [
+                "Ms."
+            ],
+            "suffix": [
+                "RN"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "01382   580   264",
+            "use": "work"
+        },
+        {
+            "system": "email",
+            "value": "muirheadmedicalcentre@nhs.scot.co.uk",
+            "use": "work"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1966-08-15",
+    "address": [
+        {
+            "line": [
+                "Muirhead Medical Centre",
+                "Liff Road",
+                "Muirhead"
+            ],
+            "city": "Muirhead",
+            "state": "Dundee 4",
+            "postalCode": "DD2 5NH",
+            "country": "United Kingdom"
+        }
+    ],
+    "qualification": [
+        {
+            "identifier": [
+                {
+                    "use": "official",
+                    "system": "https://nhs.com.uk/qualification-id",
+                    "value": "QUAL-18044"
+                }
+            ],
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                        "code": "PA",
+                        "display": "Physician Assistant"
+                    }
+                ],
+                "text": "Physician Assistant"
+            },
+            "period": {
+                "start": "2021-04-13",
+                "end": "2027-11-22"
+            },
+            "issuer": {
+                "reference": "Organization/10002",
+                "display": "Muirhead Medical Centre"
+            }
+        }
+    ],
+    "communication": [
+        {
+            "coding": [
+                {
+                    "system": "urn:ietf:bcp:47",
+                    "code": "en",
+                    "display": "English"
+                }
+            ]
+        }
+    ]
+}
