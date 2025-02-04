@@ -14,7 +14,7 @@ GCP_DATASET = "Patient_Management_System"
 GCP_FHIR_STORE = "Patient_Resource"
 FHIR_API_URL = f"https://healthcare.googleapis.com/v1/projects/{GCP_PROJECT}/locations/{GCP_LOCATION}/datasets/{GCP_DATASET}/fhirStores/{GCP_FHIR_STORE}/fhir/Organization"
 
-# Fetch NHS GP data
+#fetch NHS GP data
 def fetch_nhs_gp_data(**context):
     url = "https://www.opendata.nhs.scot/api/3/action/datastore_search"
     params = {
@@ -39,7 +39,7 @@ def fetch_nhs_gp_data(**context):
     
     context["ti"].xcom_push(key="nhs_gp_data", value=all_records)
 
-# Generate organization JSON
+#generating organization JSON
 def generate_organization_json(record):
     address_lines = list(filter(None, [
         record.get("AddressLine1"),
@@ -127,7 +127,7 @@ def generate_organization_json(record):
     }
     return organization
 
-# Validate all records
+#validating all records
 def validate_organization_data(**context):
     records = context["ti"].xcom_pull(key="nhs_gp_data")
     if not records:
@@ -159,7 +159,7 @@ def validate_organization_data(**context):
     
     context["ti"].xcom_push(key="validated_records", value=validated_records)
 
-# Debugging access token
+#debugging access token
 def debug_access_token():
     token_result = subprocess.run(
         ["gcloud", "auth", "application-default", "print-access-token"],
@@ -170,7 +170,7 @@ def debug_access_token():
         raise Exception(f"Failed to fetch access token:\n{token_result.stderr}")
     return token_result.stdout.strip()
 
-# Send all validated data to GCP
+#sending all validated data to GCP
 def send_all_to_gcp(**context):
     validated_records = context["ti"].xcom_pull(key="validated_records")
     if not validated_records:
@@ -189,7 +189,7 @@ def send_all_to_gcp(**context):
         ], check=True)
         print(f"Record ID {id_} successfully sent to GCP.")
 
-# Airflow DAG
+#airflow DAG
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,

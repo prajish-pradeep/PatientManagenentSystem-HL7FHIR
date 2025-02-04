@@ -17,7 +17,7 @@ GCP_DATASET = "Patient_Management_System"
 GCP_FHIR_STORE = "Patient_Resource"
 FHIR_API_URL = f"https://healthcare.googleapis.com/v1/projects/{GCP_PROJECT}/locations/{GCP_LOCATION}/datasets/{GCP_DATASET}/fhirStores/{GCP_FHIR_STORE}/fhir/Patient"
 
-# Fetch NHS GP data
+#fetching NHS GP data
 def fetch_nhs_gp_data(**context):
     url = "https://www.opendata.nhs.scot/api/3/action/datastore_search"
     params = {
@@ -42,7 +42,7 @@ def fetch_nhs_gp_data(**context):
     
     context["ti"].xcom_push(key="nhs_gp_data", value=all_records)
 
-# Generate patient JSON
+#generating patient JSON
 def generate_patient_data(n, nhs_data):
     language_mapping = {
         "en": "English",
@@ -219,7 +219,7 @@ def generate_patient_data(n, nhs_data):
                 }
             }
 
-            # Validate resourceType
+            #validating resourceType
             if "resourceType" not in patient or patient["resourceType"] != "Patient":
                 raise Exception(f"Invalid Patient resource (missing resourceType): {patient}")
             
@@ -233,7 +233,7 @@ def validate_patient_data(**context):
 
     patients = generate_patient_data(88700, records)
     validated_records = []
-    batch_size = 100  # Process records in smaller batches
+    batch_size = 100
     for i in range(0, len(patients), batch_size):
         batch = patients[i:i + batch_size]
         for patient in batch:
@@ -271,18 +271,18 @@ def send_to_gcp(**context):
     if not validated_records:
         raise Exception("No validated data to send")
 
-    # Retrieve access token
+    #retrieving access token
     access_token = subprocess.run(
         ["gcloud", "auth", "application-default", "print-access-token"],
         capture_output=True,
         text=True
     ).stdout.strip()
 
-    # Checkpoint file to track uploaded resources
+    #checkpoint file to track uploaded resources
     checkpoint_file = "/tmp/uploaded_patients.txt"
     uploaded_ids = set()
 
-    # Load previously uploaded IDs from checkpoint file
+    #loading previously uploaded IDs from checkpoint file
     if os.path.exists(checkpoint_file):
         with open(checkpoint_file, "r") as f:
             uploaded_ids = set(line.strip() for line in f.readlines())
@@ -302,7 +302,6 @@ def send_to_gcp(**context):
                 json=patient
             )
             if response.status_code == 200:
-                # Write successful upload to checkpoint file
                 with open(checkpoint_file, "a") as f:
                     f.write(patient_id + "\n")
                 return f"Successfully uploaded Patient ID {patient_id}"
@@ -311,8 +310,8 @@ def send_to_gcp(**context):
         except requests.exceptions.RequestException as e:
             return f"Error uploading Patient ID {patient_id}: {e}"
 
-    # Use ThreadPoolExecutor for parallel uploads
-    max_workers = 10  # Adjust based on system/network capacity
+    #using ThreadPoolExecutor for parallel uploads
+    max_workers = 10
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_to_patient = {executor.submit(upload_patient, patient): patient for patient in validated_records}
 
@@ -320,7 +319,7 @@ def send_to_gcp(**context):
             result = future.result()
             print(result)  # Log upload result
 
-# Airflow DAG
+#airflow DAG
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,

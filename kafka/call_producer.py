@@ -7,7 +7,7 @@ from confluent_kafka import Producer
 
 faker = Faker()
 
-# Function to read the Kafka client configuration from client.properties
+#function to read the Kafka client configuration from client.properties
 def read_config():
     config = {}
     try:
@@ -22,7 +22,7 @@ def read_config():
     except ValueError:
         raise ValueError("Invalid format in client.properties file.")
     
-    # Ensure required keys are present
+    #ensure required keys are present
     required_keys = ["bootstrap.servers", "security.protocol", "sasl.mechanisms", "sasl.username", "sasl.password"]
     for key in required_keys:
         if key not in config:
@@ -30,7 +30,7 @@ def read_config():
     
     return config
 
-# NHS API Data Fetcher
+#NHS API Data Fetcher
 def fetch_nhs_gp_data():
     url = "https://www.opendata.nhs.scot/api/3/action/datastore_search"
     params = {
@@ -55,7 +55,7 @@ def fetch_nhs_gp_data():
     
     return all_records
 
-# Generate Patient IDs from NHS Data
+#generating patient ids from NHS Data
 def generate_patient_ids(nhs_data, max_patients_per_practice=100):
     patient_ids = []
     for record in nhs_data:
@@ -67,7 +67,7 @@ def generate_patient_ids(nhs_data, max_patients_per_practice=100):
     return patient_ids
 
 
-# Generate Call History Data
+#generating call history data
 def generate_call_history(patient_ids, num_records=20000):
     call_types = ["query", "complaint", "emergency", "appointment", "follow-up"]
     resolutions = ["resolved", "unresolved", "pending"]
@@ -113,24 +113,21 @@ def generate_call_history(patient_ids, num_records=20000):
             "call_centre": random.choice(call_centres)  
         }
 
-# Convert Call History Data to CSV Row
+#converting call history data to csv
 def convert_to_csv_row(record):
     return f'{record["call_id"]},{record["patient_id"]},{record["timestamp"]},{record["call_type"]},{record["resolution_status"]},{record["department"]},{record["call_duration"]},"{record["notes"]}",{record["follow_up_required"]},{record["satisfaction_score"]},{record["call_centre"]}'
 
 def produce(topic, config, call_data):
     producer = Producer(config)
 
-    # Explicitly define the CSV header
     csv_header = "call_id,patient_id,timestamp,call_type,resolution_status,department,call_duration,notes,follow_up_required,satisfaction_score,call_centre"
 
-    # Send the header first
     try:
         producer.produce(topic, value=csv_header)
         print(f"Sent header: {csv_header}")
     except Exception as e:
         print(f"Failed to send header: {e}")
 
-    # Send the data rows
     for record in call_data:
         csv_row = convert_to_csv_row(record)
         try:
@@ -142,7 +139,7 @@ def produce(topic, config, call_data):
     producer.flush()
     print("All data sent to Kafka.")
 
-# Main Function
+#main function
 def main():
     print("Reading Kafka client configuration...")
     config = read_config()
@@ -153,10 +150,10 @@ def main():
 
     print(f"Generated {len(patient_ids)} patient IDs.")
 
-    # Generate call history data
+    #generating call history data
     call_data = generate_call_history(patient_ids, num_records=20000)
 
-    # Send call history data to Kafka
+    #sending call history data to Kafka
     topic = "call_history"  # Kafka topic name
     produce(topic, config, call_data)
 

@@ -8,8 +8,8 @@ spark = SparkSession.builder \
 
 #defining input and output bucket paths
 INPUT_BUCKET = "gs://feedback_history/*.csv" 
-OUTPUT_BUCKET_CLEAN = "gs://output_feedback_history/clean_feedback_history" 
-OUTPUT_BUCKET_MISSING = "gs://missing-data-points/feedback_history_missing_data" 
+TRANSFORMED_OUTPUT = "gs://output_feedback_history/" 
+OUTPUT_BUCKET_MISSING = "gs://missing-data-points/" 
 
 #reading input data from GCS bucket
 print("Reading data from GCP bucket...")
@@ -42,11 +42,33 @@ for column in numeric_columns:
     non_missing_data = non_missing_data.withColumn(column, round(col(column)))
 
 #saving clean data to gcp bucket
-print(f"Writing clean data to GCP bucket: {OUTPUT_BUCKET_CLEAN}...")
+print(f"Writing clean data to GCP bucket: {TRANSFORMED_OUTPUT}...")
 non_missing_data.write \
-    .mode("overwrite") \
-    .parquet(OUTPUT_BUCKET_CLEAN)
-print(f"Clean data saved to {OUTPUT_BUCKET_CLEAN}")
+    .mode("append") \
+    .parquet(TRANSFORMED_OUTPUT)
+print(f"Clean data saved to {TRANSFORMED_OUTPUT}")
 
 print("Process completed successfully.")
 spark.stop()
+
+
+'''
+gcloud dataproc jobs submit pyspark gs://dataproc_scripts_etl/process_feedback_history.py \
+    --cluster=patient-management-system \
+    --region=europe-west2 \
+    --id=call-feedback-etl
+'''
+
+
+'''
+#pub/sub: create a topic
+gsutil notification create -t feedback-topic -f json -e OBJECT_FINALIZE gs://output_feedback_history
+
+gcloud pubsub subscriptions create feedback-subscription --topic=feedback-topic
+'''
+
+'''
+#publish and push
+gcloud pubsub topics publish projects/robust-index-446813-f4/topics/call-topic --message "Test message for call-topic" - check if the topic is working
+gcloud pubsub subscriptions pull projects/robust-index-446813-f4/subscriptions/call-subscription --auto-ack
+'''
